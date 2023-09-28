@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Yarn Count Converter & Conversion Chart</title>
+    <style>
+        /* CSS for styling the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #converter {
+            margin: 20px auto;
+            width: 400px;
+            text-align: center;
+        }
+
+        #result {
+            font-weight: bold;
+        }
+
+        #chart {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Yarn Count Converter & Conversion Chart</h1>
+
+    <!-- Yarn Count Converter -->
+    <div id="converter">
+        <label for="yarnCount">Enter Yarn Count:</label>
+        <input type="number" id="yarnCount" placeholder="Yarn Count">
+        <select id="fromSystem">
+            <option value="tex">Tex</option>
+            <option value="denier">Denier</option>
+            <option value="nm">Nm</option>
+            <option value="dtx">DTX</option>
+            <option value="ne">NE</option>
+            <!-- Add more yarn count units as needed -->
+        </select>
+        <span>to</span>
+        <select id="toSystem">
+            <option value="tex">Tex</option>
+            <option value="denier">Denier</option>
+            <option value="nm">Nm</option>
+            <option value="dtx">DTX</option>
+            <option value="ne">NE</option>
+            <!-- Add more yarn count units as needed -->
+        </select>
+        <button onclick="convertYarnCount()">Convert</button>
+        <p id="result"></p>
+    </div>
+
+    <!-- Yarn Count Conversion Chart -->
+    <div id="chart">
+        <h2>Conversion Chart</h2>
+        <table border="1">
+            <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Conversion Factor</th>
+            </tr>
+            <tr>
+                <td>Tex</td>
+                <td>Denier</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>Tex</td>
+                <td>Nm</td>
+                <td>590</td>
+            </tr>
+            <tr>
+                <td>Tex</td>
+                <td>DTX</td>
+                <td>0.9</td>
+            </tr>
+            <tr>
+                <td>Tex</td>
+                <td>NE</td>
+                <td>531.44</td>
+            </tr>
+            <!-- Add more conversion factors as needed -->
+        </table>
+    </div>
+
+    <script>
+        // JavaScript for Yarn Count Converter
+        function convertYarnCount() {
+            const yarnCount = parseFloat(document.getElementById("yarnCount").value);
+            const fromSystem = document.getElementById("fromSystem").value;
+            const toSystem = document.getElementById("toSystem").value;
+            let conversionFactor = 1;
+
+            // Lookup conversion factor in the chart (you can add more conversions)
+            if (fromSystem === "tex" && toSystem === "denier") {
+                conversionFactor = 9;
+            } else if (fromSystem === "tex" && toSystem === "nm") {
+                conversionFactor = 590;
+            } else if (fromSystem === "tex" && toSystem === "dtx") {
+                conversionFactor = 0.9;
+            } else if (fromSystem === "tex" && toSystem === "ne") {
+                conversionFactor = 531.44;
+            }
+
+            // Add more conversion factors as needed for other yarn count units
+
+            const convertedYarnCount = yarnCount * conversionFactor;
+            document.getElementById("result").textContent = `${yarnCount} ${fromSystem} is ${convertedYarnCount} ${toSystem}`;
+        }
+    </script>
+</body>
+
+</html>
